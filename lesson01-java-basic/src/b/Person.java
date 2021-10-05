@@ -2,7 +2,7 @@ package b;
 
 public class Person {
 	
-	// attributes - date - AAA
+	// attributes - date
 	int id;
 	String name;
 	int age;

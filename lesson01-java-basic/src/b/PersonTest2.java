@@ -1,5 +1,7 @@
 package b;
 
+import javax.swing.JFrame;
+
 public class PersonTest2 {
 
 	public static void main(String[] args) {
@@ -17,6 +19,7 @@ public class PersonTest2 {
 		p2.id = 101;
 		p2.name = "David";
 		p2.age = 25;
+		
 		
 
 	}
