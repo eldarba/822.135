@@ -4,6 +4,9 @@ public class PersonTest2 {
 
 	public static void main(String[] args) {
 		
+		int x = 5;
+		System.out.println(x);
+		
 		// 2 objects might have the same type and same state
 		Person p1 = new Person(); 
 		p1.id = 101;
