@@ -22,7 +22,7 @@ public class Car {
 
 	@Override
 	public int hashCode() {
-		return this.number * 3 / 5;
+		return number * 3 / 5;
 	}
 
 	@Override
