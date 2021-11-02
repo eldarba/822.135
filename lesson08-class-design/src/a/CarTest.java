@@ -4,6 +4,8 @@ public class CarTest {
 
 	public static void main(String[] args) {
 
+		System.out.println("Hello");
+
 		Car car1 = new Car();
 		Car car2 = new Car(101, 0, "Yellow");
 		Car car3 = new Car(101, 60, "Blue");

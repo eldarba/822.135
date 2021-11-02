@@ -1,9 +1,20 @@
 package a;
 
 public class Car {
+
+	private static int counter;
 	private int number;
 	private int speed;
 	private String color;
+
+	static { // static initializer - runs on class load
+		System.out.println("class Car loaded");
+	}
+
+	{ // initializer - runs on each instantiation
+		System.out.println("instance of Car created");
+		counter++;
+	}
 
 	public Car() {
 	}
