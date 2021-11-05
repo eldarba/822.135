@@ -20,4 +20,9 @@ public class Hawk extends Bird implements Flyer, Navigator {
 		System.out.println("navigate like a hawk");
 	}
 
+	@Override
+	public void greet() {
+		System.out.println("hawk says hello");
+	}
+
 }
