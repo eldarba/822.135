@@ -2,7 +2,7 @@ package c;
 
 import java.util.Arrays;
 
-public class Test2 {
+public class Test3 {
 
 	public static void main(String[] args) {
 
@@ -17,11 +17,8 @@ public class Test2 {
 			int age = (int) (Math.random() * 201);
 			try {
 				persons[i].setAge(age);
-			} catch (NullPointerException e) {
-				persons[i] = new Person();
-				System.out.println("NULL");
-			} catch (AgeException e) {
-				System.out.println("illegal age: " + e.getMessage());
+			} catch (NullPointerException | AgeException e) {
+				System.out.println(e.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
 				break;
