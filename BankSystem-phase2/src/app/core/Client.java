@@ -8,7 +8,6 @@ public class Client {
 	private Account[] accounts = new Account[5];
 	private float commissionRate = 0.1F;
 	private float interestRate;
-	private Logger logger = new Logger(null);
 
 	public Client(int id, String name, float balance) {
 		super();
@@ -30,7 +29,7 @@ public class Client {
 				// create the log instance
 				Log log = new Log(ts, clientId, description, amount);
 				// log the log instance - print to screen
-				logger.log(log);
+				Logger.getInstance().log(log);
 				// ================= ============================================
 				return; // exit the method
 			}
@@ -56,7 +55,7 @@ public class Client {
 		this.balance -= commission;
 		// log the operation ==========
 		Log log = new Log(this.id, "deposit", amount);
-		logger.log(log);
+		Logger.getInstance().log(log);
 		// ================= ==========
 	}
 
@@ -66,7 +65,7 @@ public class Client {
 		this.balance -= commission;
 		// log the operation ==========
 		Log log = new Log(this.id, "withdraw", amount);
-		logger.log(log);
+		Logger.getInstance().log(log);
 		// ================= ==========
 	}
 
@@ -109,7 +108,7 @@ public class Client {
 				// create the log instance
 				Log log = new Log(ts, clientId, description, amount);
 				// log the log instance - print to screen
-				logger.log(log);
+				Logger.getInstance().log(log);
 				// ================= ============================================
 				return;
 			}
