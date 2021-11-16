@@ -70,6 +70,13 @@ public class SortingDemo1 {
 			print(list);
 		}
 
+		{
+			String s1 = "ccc";
+			String s2 = "ccc";
+
+			System.out.println(s1.compareTo(s2));
+		}
+
 	}
 
 	static void print(Collection<?> collection) {
