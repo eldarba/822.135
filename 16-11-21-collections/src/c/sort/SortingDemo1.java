@@ -2,6 +2,7 @@ package c.sort;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class SortingDemo1 {
@@ -52,11 +53,31 @@ public class SortingDemo1 {
 			list.add(new Person(200, "ccc", 40));
 			list.add(new Person(101, "bbb", 25));
 			list.add(new Person(307, "aaa", 30));
+
+			System.out.println("insert order");
 			System.out.println(list);
+
+			System.out.println("natural order");
 			list.sort(null);
-			System.out.println(list);
+			print(list);
+
+			System.out.println("name order");
+			list.sort(new PersonNameComparator());
+			print(list);
+
+			System.out.println("age order");
+			list.sort(new PersonAgeComparator());
+			print(list);
 		}
 
+	}
+
+	static void print(Collection<?> collection) {
+		System.out.println("================");
+		for (Object e : collection) {
+			System.out.println(e);
+		}
+		System.out.println("================");
 	}
 
 }
