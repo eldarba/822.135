@@ -28,6 +28,7 @@ public class Tar2 {
 		while (it.hasNext()) {
 			int x = it.next();
 			if (x % 2 != 0) {
+				System.out.println("rmoving: " + x);
 				it.remove();
 			}
 		}
