@@ -7,7 +7,7 @@ public class Cat implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String name;
-	private int weight;
+	private transient int weight;
 	private String Color;
 
 	public Cat() {
