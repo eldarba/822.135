@@ -1,0 +1,15 @@
+this is line 1
+5
+2021-11-26
+Cat [id=101, name=Yosef, weight=22, Color=Mustard]
+=== prices======
+price:      85.85
+price:      13.66
+price:     100.97
+price:      36.99
+price:      59.92
+price:      95.05
+price:      28.44
+price:      27.63
+price:       7.36
+price:      48.12

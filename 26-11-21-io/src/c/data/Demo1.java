@@ -19,7 +19,7 @@ public class Demo1 {
 		File dir = new File("files");
 		File file = new File(dir, "primitives.data");
 
-		dir.mkdirs();
+		dir.mkdirs(); // create the directory in the FS
 
 		try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));) {
 
