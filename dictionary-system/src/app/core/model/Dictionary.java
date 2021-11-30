@@ -1,4 +1,4 @@
-package app.core;
+package app.core.model;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

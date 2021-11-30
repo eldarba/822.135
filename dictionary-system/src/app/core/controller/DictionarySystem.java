@@ -1,9 +1,10 @@
-package app.core;
+package app.core.controller;
 
 import java.util.Scanner;
 import java.util.Set;
 
 import app.core.exceptions.DictionaryException;
+import app.core.model.Dictionary;
 
 public class DictionarySystem {
 
