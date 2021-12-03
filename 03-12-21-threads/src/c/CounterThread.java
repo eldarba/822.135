@@ -2,8 +2,10 @@ package c;
 
 public class CounterThread extends Thread {
 
+	// declare an attribute
 	private Mode mode;
 
+	// declare an enum type
 	public enum Mode {
 		STOP, COUNT_DOWN, IGNORE;
 	}
