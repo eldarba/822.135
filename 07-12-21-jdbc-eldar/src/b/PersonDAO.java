@@ -46,7 +46,7 @@ public class PersonDAO {
 
 	}
 
-	public void delete(Person personId) {
+	public void delete(int personId) {
 
 	}
 
