@@ -14,7 +14,7 @@ public class DataSource {
 
 	private DataSource() {
 		try {
-			con = DriverManager.getConnection(url, user, password);
+			this.con = DriverManager.getConnection(url, user, password);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -25,10 +25,16 @@ public class DataSource {
 	}
 
 	public Connection getConnection() {
-		return this.con;
+		Connection c = con;
+		this.con = null;
+		return c;
 	}
 
-	public void closeConnction() {
+	public void returnConnection(Connection con) {
+		this.con = con;
+	}
+
+	public void closeDatasource() {
 		try {
 			this.con.close();
 		} catch (SQLException e) {

@@ -1,8 +1,10 @@
-package app.core.data;
+package app.core.data.build;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import app.core.data.DataSource;
 
 public class CreateTable {
 
@@ -11,7 +13,6 @@ public class CreateTable {
 		String sql = "create table book(\r\n" + "id int primary key auto_increment,\r\n" + "title varchar(25), \r\n"
 				+ "author varchar(25),\r\n" + "publication date,\r\n" + "price float\r\n" + ")";
 
-		System.out.println(sql);
 		Connection con = DataSource.getInstance().getConnection();
 
 		try (Statement stmt = con.createStatement();) {
@@ -20,7 +21,8 @@ public class CreateTable {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DataSource.getInstance().closeConnction();
+			DataSource.getInstance().returnConnection(con);
+			DataSource.getInstance().closeDatasource();
 		}
 
 	}
