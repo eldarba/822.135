@@ -34,9 +34,14 @@ public class SystemFacade {
 
 	public Book getBook(int bookId) {
 		Connection con = DataSource.getInstance().getConnection();
-		Book book = this.bookDao.read(con, bookId);
-		DataSource.getInstance().returnConnection(con);
-		return book;
+		try {
+			Book book = this.bookDao.read(con, bookId);
+			return book;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			DataSource.getInstance().returnConnection(con);
+		}
 	}
 
 }
