@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class BookDao {
 
@@ -25,6 +26,28 @@ public class BookDao {
 			return id;
 		} catch (SQLException e) {
 			throw new RuntimeException("create book failed", e);
+		}
+	}
+
+	public Book read(Connection con, int bookId) {
+		String sql = "select * from book where id = ?";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bookId);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				Book book = new Book();
+				book.setId(bookId);
+				book.setAuthor(rs.getString("author"));
+				book.setTitle(rs.getString("title"));
+				book.setPrice(rs.getDouble("price"));
+				book.setPublication(LocalDate.parse(rs.getDate("publication").toString()));
+				return book;
+			} else {
+				throw new RuntimeException("book id " + bookId + " not found");
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException("read book failed", e);
 		}
 	}
 

@@ -10,6 +10,7 @@ public class App {
 
 	public static void main(String[] args) {
 
+		DataSource.getInstance();
 		SystemFacade facade = new SystemFacade();
 		Book book = new Book(0, "Java 1", "Eldar", LocalDate.of(2020, 5, 25), 580);
 		facade.addBook(book);

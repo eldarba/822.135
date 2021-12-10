@@ -20,7 +20,9 @@ public class SystemFacade {
 		} catch (SQLException e) {
 			try {
 				// end the transaction with rollback - fail
-				con.rollback();
+				if (con != null) {
+					con.rollback();
+				}
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -28,6 +30,13 @@ public class SystemFacade {
 		} finally {
 			ds.returnConnection(con);
 		}
+	}
+
+	public Book getBook(int bookId) {
+		Connection con = DataSource.getInstance().getConnection();
+		Book book = this.bookDao.read(con, bookId);
+		DataSource.getInstance().returnConnection(con);
+		return book;
 	}
 
 }
