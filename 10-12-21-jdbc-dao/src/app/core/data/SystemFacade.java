@@ -6,6 +6,7 @@ import java.sql.SQLException;
 public class SystemFacade {
 
 	private BookDao bookDao = new BookDao();
+	private UserDao userDao = new UserDao();
 	private DataSource ds = DataSource.getInstance();
 
 	public int addBook(Book book) {
@@ -39,6 +40,27 @@ public class SystemFacade {
 			return book;
 		} catch (Exception e) {
 			throw e;
+		} finally {
+			DataSource.getInstance().returnConnection(con);
+		}
+	}
+
+	public void transferMoney(int from, int to, double amount) {
+		Connection con = DataSource.getInstance().getConnection();
+		try {
+			con.setAutoCommit(false);
+			userDao.takeFrom(con, from, amount);
+			userDao.giveTo(con, to, amount);
+			con.commit();
+			System.out.println("action commited");
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				con.rollback();
+				System.out.println("action rolled back");
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		} finally {
 			DataSource.getInstance().returnConnection(con);
 		}

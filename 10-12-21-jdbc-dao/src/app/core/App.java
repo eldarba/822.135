@@ -1,6 +1,5 @@
 package app.core;
 
-import app.core.data.Book;
 import app.core.data.DataSource;
 import app.core.data.SystemFacade;
 
@@ -20,9 +19,15 @@ public class App {
 			}
 
 			{// read
-				Book book = facade.getBook(155);
-				System.out.println(book);
+//				Book book = facade.getBook(155);
+//				System.out.println(book);
 			}
+
+			{// transfer money
+				facade.transferMoney(1, 12, 100);
+				System.out.println("transfer complete");
+			}
+
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
 //			e.printStackTrace();
