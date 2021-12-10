@@ -52,7 +52,7 @@ public class PersonDAO {
 
 	public static void main(String[] args) {
 		PersonDAO dao = new PersonDAO();
-		Person p = new Person(0, "Michael", 80);
+		Person p = new Person(0, "Meir", 55);
 		dao.create2(p);
 		System.out.println("Done");
 	}
