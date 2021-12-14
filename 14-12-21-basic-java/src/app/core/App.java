@@ -13,6 +13,10 @@ public class App {
 		Country country = getCountry();
 		System.out.println("number of cars in country: " + country.getNumberOfCars());
 		System.out.println(country.displayHighways());
+		System.out.println("avg speed of cars in country: " + country.getAvgHighwaySpeed());
+		System.out.println("max speed of cars in country: " + country.getMaxSpeed());
+		System.out.println("most busy highway in country: " + country.getMostBusyHighway().getName());
+		System.out.println("fastest highway in country: " + country.getFastestHighway().getName());
 
 	}
 
