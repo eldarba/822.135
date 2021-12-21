@@ -1,5 +1,7 @@
 package app.core;
 
+import app.core.ecxeption.BankException;
+
 public class Client {
 
 	private int id;
@@ -59,7 +61,10 @@ public class Client {
 		// ================= ==========
 	}
 
-	public void withdraw(float amount) {
+	public void withdraw(float amount) throws BankException {
+		if (amount > this.balance) {
+			throw new BankException("withdraw failed - overdraft");
+		}
 		float commission = amount * commissionRate;
 		this.balance -= amount;
 		this.balance -= commission;
