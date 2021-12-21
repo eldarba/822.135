@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -43,13 +44,25 @@ public class DictionaryUi {
 				String entry = tfEntry.getText();
 				String def = taDef.getText();
 				dictionary.addEntry(entry, def);
-				System.out.println(dictionary.getMap());
 
 			}
 		});
 
 		JButton btShow = new JButton("show definition");
 		btShow.setBounds(250, 40, 200, 25);
+		btShow.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String entry = tfEntry.getText();
+				try {
+					String def = dictionary.getDefinition(entry);
+					JOptionPane.showMessageDialog(fr, def);
+				} catch (Exception ex) {
+//					JOptionPane.showMessageDialog(fr, "error: " + ex.getMessage());
+					JOptionPane.showMessageDialog(fr, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 		fr.add(btShow);
 
 		fr.setVisible(true);
