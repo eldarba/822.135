@@ -8,16 +8,43 @@ import app.core.exceptions.UniversityException;
 
 public class Test1 {
 
+	static StudentDao studentDao = new StudentDao();
+
 	public static void main(String[] args) {
 
 		try {
-			StudentDao studentDao = new StudentDao();
-			int id = studentDao.create(new Student("Danna", LocalDate.of(2019, 1, 1), false));
-			System.out.println("created: " + id);
+//			addStudent();
+//			find(2);
+			findAll();
+//			update(1);
 		} catch (UniversityException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.err.println(e.getMessage());
 		}
 
+	}
+
+	public static void update(int id) throws UniversityException {
+		Student student = new Student(id, "AAA", LocalDate.of(1900, 1, 1), false);
+		studentDao.update(student);
+		System.out.println("updated " + id);
+	}
+
+	public static void findAll() throws UniversityException {
+		System.out.println("=== students ===========");
+		for (Student st : studentDao.findAll()) {
+			System.out.println(st);
+		}
+		System.out.println("=== ======== ===========");
+	}
+
+	public static void find(int id) throws UniversityException {
+		System.out.println(studentDao.findById(id));
+	}
+
+	public static void addStudent() throws UniversityException {
+		int id = studentDao.create(new Student("Haim", LocalDate.of(2018, 1, 1), true));
+		System.out.println("created: " + id);
 	}
 
 }
