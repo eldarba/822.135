@@ -15,13 +15,22 @@ public class Test1 {
 		try {
 //			addStudent();
 //			find(2);
-			findAll();
+//			findAll();
 //			update(1);
+			delete(1);
 		} catch (UniversityException e) {
 //			e.printStackTrace();
 			System.err.println(e.getMessage());
 		}
 
+	}
+
+	public static void delete(int id) throws UniversityException {
+		if (studentDao.delete(id)) {
+			System.out.println("deleted: " + id);
+		} else {
+			System.out.println("NOT deleted - not found: " + id);
+		}
 	}
 
 	public static void update(int id) throws UniversityException {

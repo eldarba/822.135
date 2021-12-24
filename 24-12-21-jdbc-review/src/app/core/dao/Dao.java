@@ -16,6 +16,6 @@ public interface Dao<T, ID> {
 
 	void update(T bean) throws Exception;
 
-	void delete(ID id) throws Exception;
+	boolean delete(ID id) throws Exception;
 
 }

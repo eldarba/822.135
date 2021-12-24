@@ -98,9 +98,16 @@ public class StudentDao implements Dao<Student, Integer> {
 	}
 
 	@Override
-	public void delete(Integer id) throws UniversityException {
-		// TODO Auto-generated method stub
-
+	public boolean delete(Integer id) throws UniversityException {
+		String sql = "delete from student where id=?";
+		try (Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);) {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			int rowCount = pstmt.executeUpdate();
+			return rowCount == 1;
+		} catch (SQLException e) {
+			throw new UniversityException("delete student failed", e);
+		}
 	}
 
 }
