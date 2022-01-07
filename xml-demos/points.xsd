@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.points.org/points"
+	xmlns:tns="http://www.points.org/points" elementFormDefault="qualified">
+
+	<element name="points">
+		<complexType>
+			<sequence>
+				<element name="point" minOccurs="0" maxOccurs="unbounded">
+					<complexType>
+						<sequence>
+							<element name="x" type="int"></element>
+							<element name="y" type="int"></element>
+						</sequence>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

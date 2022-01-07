@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<points xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.points.org/points"
+	xsi:schemaLocation="http://www.points.org/points points.xsd">
+	<point>
+		<x>25</x>
+		<y>35</y>
+	</point>
+	<point>
+		<x>11</x>
+		<y>34</y>
+	</point>
+	<point>
+		<x>66</x>
+		<y>11</y>
+	</point>
+	<point>
+		<x>2</x>
+		<y>1</y>
+	</point>
+</points>
