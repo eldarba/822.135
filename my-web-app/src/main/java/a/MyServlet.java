@@ -23,6 +23,11 @@ public class MyServlet extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		out.println(model.helloWorld()); // to the client browser
 		
+		double a = Double.parseDouble(req.getParameter("a"));
+		double b = Double.parseDouble(req.getParameter("b"));
+		
+		double sum = model.sum(a, b);
+		out.println(a + " + " + b + " = " + sum); // to the client browser
 	}
 
 }
