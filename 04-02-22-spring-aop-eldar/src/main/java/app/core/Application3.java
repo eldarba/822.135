@@ -5,7 +5,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
-import app.core.aspects.StatisticalAspect;
 import app.core.brokers.Broker;
 
 @Configuration
@@ -20,7 +19,8 @@ public class Application3 {
 			Broker broker = ctx.getBean(Broker.class);
 
 			try {
-				broker.buyCars((int) (Math.random() * 25 + 10));
+				int quantity = broker.buyCars((int) (Math.random() * 25 + 10));
+				System.out.println(quantity);
 			} catch (Exception e) {
 				System.out.println(e);
 			}
