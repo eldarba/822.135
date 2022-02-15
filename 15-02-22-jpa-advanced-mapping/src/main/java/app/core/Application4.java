@@ -8,14 +8,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import app.core.entities.Address;
+import app.core.entities.Principal;
+import app.core.entities.Review;
 import app.core.entities.School;
-import app.core.entities.Teacher;
 
 @SpringBootApplication
-public class Application2 {
+public class Application4 {
 
 	public static void main(String[] args) {
-		ApplicationContext ctx = SpringApplication.run(Application2.class, args);
+		ApplicationContext ctx = SpringApplication.run(Application4.class, args);
 		
 		EntityManagerFactory factory = ctx.getBean(EntityManagerFactory.class);
 		EntityManager em = factory.createEntityManager();
@@ -23,26 +24,28 @@ public class Application2 {
 		try {
 			// start transaction
 			em.getTransaction().begin();
-			School school = em.find(School.class, 4);
-			System.out.println(school);
-			System.out.println(school.getAddress());
-//			school.getAddress().setStreet("aaa");
-//			em.remove(school);
+			// find schools
+			School sc1 = em.find(School.class, 4);
+			School sc2 = em.find(School.class, 5);
+			// create reviews for the schools
+			Review r1 = new Review(0, 10, "great", sc1);
+			Review r2 = new Review(0, 8, "ok", sc1);
+			Review r3 = new Review(0, 4, "bad", sc2);
+			Review r4 = new Review(0, 7, "nice", sc2);
+			Review r5 = new Review(0, 10, "great", sc2);
 			
-			// add teachers
-			Teacher t1 = new Teacher(0, "aaa", "aaa");
-			Teacher t2 = new Teacher(0, "bbb", "bbb");
-			Teacher t3 = new Teacher(0, "ccc", "ccc");
-			school.addTeacher(t1);
-			school.addTeacher(t2);
-			school.addTeacher(t3);
+			Review[] arr = {r1, r2, r3, r4, r5 };
+			for (Review review : arr) {
+				em.persist(review);
+			}
+//			
 			
 			// end transaction
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			// end transaction
 			em.getTransaction().rollback();
-		} 
+		}
 		
 		
 	}

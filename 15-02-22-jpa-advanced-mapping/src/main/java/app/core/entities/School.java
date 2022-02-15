@@ -23,7 +23,7 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"address", "principal"})
+@ToString(exclude = { "address", "principal" })
 @Entity
 public class School {
 
@@ -36,14 +36,16 @@ public class School {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
 	private Address address;
-	
-	
+
 	@OneToOne(mappedBy = "school", cascade = CascadeType.ALL)
 	private Principal principal;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "school_id")
 	private List<Teacher> teachers;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "school")
+	private List<Student> students;
 
 	public enum Category {
 		SCIENCES, ARTS, PUBLIC, PRIVATE
@@ -56,14 +58,31 @@ public class School {
 		this.category = category;
 		this.address = address;
 	}
-	
+
 	public void addTeacher(Teacher teacher) {
-		if(this.teachers==null) {
+		if (this.teachers == null) {
 			this.teachers = new ArrayList<>();
 		}
 		this.teachers.add(teacher);
 	}
-	
-	
+
+	public void addStudents(Student... students) {
+		if (this.students == null) {
+			this.students = new ArrayList<>();
+		}
+
+		for (Student student : students) {
+			student.setSchool(this);
+			this.students.add(student);
+		}
+
+	}
+
+	public void setStudents(List<Student> students) {
+		for (Student student : students) {
+			student.setSchool(this);
+		}
+		this.students = students;
+	}
 
 }
