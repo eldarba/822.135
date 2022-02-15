@@ -23,7 +23,7 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = { "address", "principal" })
+@ToString(exclude = { "address", "principal", "students", "teachers" })
 @Entity
 public class School {
 
@@ -44,7 +44,7 @@ public class School {
 	@JoinColumn(name = "school_id")
 	private List<Teacher> teachers;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "school")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "school", fetch = FetchType.LAZY)
 	private List<Student> students;
 
 	public enum Category {
