@@ -1,0 +1,8 @@
+הוראות לפרויקט שלב 2
+
+1. להפוך את ה beans ל entities
+2. לכתוב repositories (להשלים מתודות חסרות בשלב ה service)
+3. את מחלקות ה fcacade להפוך ל services
+4. daily-job אפשר להשתמש ב scheduling
+5. להפוך את LoginManager ל Component סינגלטון
+6. כתיבת ה tests - כדאי לעבוד עם command line runner
