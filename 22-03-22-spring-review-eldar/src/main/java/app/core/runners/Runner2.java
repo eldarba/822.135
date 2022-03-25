@@ -6,6 +6,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import app.core.services.AppService;
+import app.core.services.LoginService;
 
 @Component
 @Order(2)
@@ -13,6 +14,8 @@ public class Runner2 implements CommandLineRunner {
 
 	@Autowired
 	private AppService appService;
+	@Autowired
+	private LoginService loginService;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -20,6 +23,7 @@ public class Runner2 implements CommandLineRunner {
 		System.out.println("========= runner 2");
 
 		try {
+			loginService.login("admin", "123");
 			appService.deletePost(111);
 
 		} catch (Exception e) {
