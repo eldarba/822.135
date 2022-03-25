@@ -1,5 +1,6 @@
 package app.core.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,4 +67,44 @@ public class AppService {
 			post.addComment(comment);
 		}
 	}
+
+	public List<Post> getAllPosts() {
+		return this.postRepository.findAll();
+	}
+
+	public List<Comment> getAllComments() {
+		return this.commentRepository.findAll();
+	}
+
+	public List<Comment> getAllCommentsOfPost(int postId) {
+		return this.commentRepository.findByPostId(postId);
+	}
+	
+	public void updatePost(Post post) {
+		Optional<Post> opt = this.postRepository.findById(post.getId());
+		if(opt.isPresent()) {
+			Post postFromDb = opt.get();
+			postFromDb.setText(post.getText());
+			postFromDb.setTitle(post.getTitle());
+		}else {
+			throw new PostSystemException("updatePost failed - post not exist");
+		}
+	}
+	
+	public void updateComment(Comment comment) {
+		if(this.commentRepository.existsById(comment.getId())) {
+			this.commentRepository.save(comment);
+		}else {
+			throw new PostSystemException("updateComment failed - comment not exist");
+		}
+	}
+	
+	public void deletePost(int postId) {
+		this.postRepository.deleteById(postId);
+	}
+	
+	
+	
+	
+
 }
