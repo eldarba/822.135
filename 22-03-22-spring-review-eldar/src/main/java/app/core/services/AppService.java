@@ -58,7 +58,12 @@ public class AppService {
 		}
 	}
 
-	public void addCommentToPost(Comment comment, int postId) {
+	/**
+	 * @param comment
+	 * @param postId
+	 * @throws PostSystemException if post not exist
+	 */
+	public void addCommentToPost(Comment comment, int postId) throws PostSystemException {
 		Optional<Post> opt = this.postRepository.findById(postId);
 		if (opt.isEmpty()) {
 			throw new PostSystemException("addComment failed - post not exist");

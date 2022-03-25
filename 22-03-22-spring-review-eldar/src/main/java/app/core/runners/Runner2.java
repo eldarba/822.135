@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import app.core.services.AppService;
 import app.core.services.LoginService;
 
-@Component
+//@Component
 @Order(2)
 public class Runner2 implements CommandLineRunner {
 

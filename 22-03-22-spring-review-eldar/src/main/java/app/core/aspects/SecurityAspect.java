@@ -20,8 +20,10 @@ public class SecurityAspect {
 	// advice is a code that runs when we call a join point - intercepted API method
 	@Around("execution(* app.core.services.AppService.*(..))")
 	public Object checkLogin(ProceedingJoinPoint jp) throws Throwable {
+		
 		if(loginService.isLoggedIn()) {
-			return jp.proceed();
+			Object res = jp.proceed();
+			return res;
 		}else {
 			throw new PostSystemException("calling " + jp.getSignature().getName() + " failed - not logged in");
 		}

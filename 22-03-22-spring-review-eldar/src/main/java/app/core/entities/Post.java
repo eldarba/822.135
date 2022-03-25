@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -33,6 +35,7 @@ public class Post {
 	private LocalDate issueDate;
 	private String text;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
 	private List<Comment> comments;
 
