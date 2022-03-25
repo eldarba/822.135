@@ -100,7 +100,11 @@ public class AppService {
 	}
 	
 	public void deletePost(int postId) {
-		this.postRepository.deleteById(postId);
+		if(this.postRepository.existsById(postId)) {
+			this.postRepository.deleteById(postId);
+		}else {
+			throw new PostSystemException("deletePost failed - post not exist");
+		}
 	}
 	
 	
