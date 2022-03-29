@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,6 +32,7 @@ public class Comment {
 	private LocalDateTime date;
 	private String comment;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "post_id")
 	private Post post;
