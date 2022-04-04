@@ -84,36 +84,40 @@ public class AppService {
 	public List<Comment> getAllCommentsOfPost(int postId) {
 		return this.commentRepository.findByPostId(postId);
 	}
-	
+
 	public void updatePost(Post post) {
 		Optional<Post> opt = this.postRepository.findById(post.getId());
-		if(opt.isPresent()) {
+		if (opt.isPresent()) {
 			Post postFromDb = opt.get();
 			postFromDb.setText(post.getText());
 			postFromDb.setTitle(post.getTitle());
-		}else {
+		} else {
 			throw new PostSystemException("updatePost failed - post not exist");
 		}
 	}
-	
+
 	public void updateComment(Comment comment) {
-		if(this.commentRepository.existsById(comment.getId())) {
+		if (this.commentRepository.existsById(comment.getId())) {
 			this.commentRepository.save(comment);
-		}else {
+		} else {
 			throw new PostSystemException("updateComment failed - comment not exist");
 		}
 	}
-	
+
 	public void deletePost(int postId) {
-		if(this.postRepository.existsById(postId)) {
+		if (this.postRepository.existsById(postId)) {
 			this.postRepository.deleteById(postId);
-		}else {
+		} else {
 			throw new PostSystemException("deletePost failed - post not exist");
 		}
 	}
-	
-	
-	
-	
+
+	public void deleteComment(int commentId) {
+		if (this.commentRepository.existsById(commentId)) {
+			this.commentRepository.deleteById(commentId);
+		} else {
+			throw new PostSystemException("deleteComment failed - comment not exist");
+		}
+	}
 
 }
