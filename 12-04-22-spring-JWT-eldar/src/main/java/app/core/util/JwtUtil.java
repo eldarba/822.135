@@ -54,9 +54,9 @@ public class JwtUtil {
 
 		String token = Jwts.builder()
 
-				.setSubject(subject)
+				.setClaims(claims) // setting the claims (non standard) should be first
 
-				.setClaims(claims)
+				.setSubject(subject)
 
 				.setIssuedAt(Date.from(now))
 
