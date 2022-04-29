@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend>add person POST</legend>
+        <form action="http://localhost:8080/person" method="post">
+            <input name="id" type="number" placeholder="id">
+            <br>
+            <input name="name" type="text" placeholder="name">
+            <br>
+            <input name="age" type="number" placeholder="age">
+            <br>
+            <input type="submit">
+        </form>
+    </fieldset>
+
+    <fieldset>
+        <legend>get person GET</legend>
+        <form action="http://localhost:8080/person" method="get">
+            <input name="id" type="number" placeholder="id">
+            <br>
+            <input type="submit">
+        </form>
+    </fieldset>
+</body>
+</html>

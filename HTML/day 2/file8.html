@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>JavaScript</h1>
+    aaa
+    <script>
+
+        // print hello to console
+        window.console.log("Hello JavaScript World");
+        console.log("Hello JavaScript World");
+
+        // declare variables
+        {
+            var x = 5; // var is hoisted - delaration moves to the top - global
+            let y = 100; // let is not hoisted - local to scope
+            console.log(typeof x);
+            x = "hello";
+            console.log(typeof x);
+        }
+
+        console.log(x);
+        // console.log(y); // error - not in global scope
+
+        {
+            let a = 5;
+            a = 9;
+            a = 100;
+
+            const b = 25;
+            // b = 200; // error
+        }
+
+
+    </script>
+</body>
+
+</html>

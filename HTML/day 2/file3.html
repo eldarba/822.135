@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Forms</h1>
+    <fieldset>
+        <legend>details</legend>
+        <form action="">
+            email <input name="email" type="email">
+            <br>
+            address <input name="address" type="text" required> *
+            <br>
+            name <input name="name" type="text" required pattern="^[A-Z].*$"> *
+            <br>
+            age <input name="age" type="number" min="0" max="120">
+            <br>
+            birthdate <input name="birthdate" type="date">
+            <br>
+            color <input name="color" type="color">
+            <br>
+            <input type="submit">
+        </form>
+    </fieldset>
+</body>
+</html>
