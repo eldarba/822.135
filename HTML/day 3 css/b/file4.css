@@ -1,0 +1,10 @@
+/* paragraph with span inside */
+p span{
+    color: green;
+}
+
+/* paragraph with span inside DIRECT */
+p>span{
+    border: 1px solid black;
+}
+

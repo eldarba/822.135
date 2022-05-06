@@ -1,0 +1,18 @@
+h1, h2{
+    color: red;
+}
+
+label, button{
+    display: inline-block;
+    width: 100px;
+    border: 1px solid black;
+    text-align: center;
+    /* background-color: aquamarine; */
+}
+
+div{
+    width: 50%;
+    /* background-color: aquamarine; */
+    margin: 10px 30px 10px 50px;
+}
+

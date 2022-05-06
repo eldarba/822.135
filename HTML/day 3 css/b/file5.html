@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <link rel="stylesheet"
+          href="file5.css">
+</head>
+
+<body>
+
+    <!-- inline element -->
+    <label>This is a lable</label>
+    <label>This is a lable</label>
+
+    <!-- block element -->
+    <div>this is div</div>
+    aaa
+    <div>this is div</div>
+    bbb
+    <hr>
+    <button onclick="hide()">Hide / Show</button>
+    <button id="bt1">Click</button>
+
+    <script>
+        function hide() {
+            let bt1 = document.getElementById("bt1");
+            bt1.style.display = "none";
+        }
+        
+        function show() {
+            let bt1 = document.getElementById("bt1");
+            bt1.style.display = "block";
+        }
+    </script>
+
+</body>
+
+</html>

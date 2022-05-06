@@ -1,0 +1,13 @@
+img {
+    padding: 20px;
+    border: 5px solid black;
+    width: 100px;
+    box-sizing: border-box;
+    float: left;
+}
+
+h1 {
+    border: 5px solid black;
+    width: 300px;
+    box-sizing: border-box;
+}

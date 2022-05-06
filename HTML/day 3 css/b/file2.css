@@ -1,0 +1,8 @@
+h1, h2, .red, #p1, p[dir=rtl]{
+    color: red;
+}
+
+/* div with dir specified (any value) */
+div[dir]{
+    color: blue;
+}
