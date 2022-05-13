@@ -1,7 +1,10 @@
 package app.core.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,5 +39,15 @@ public class BookAndLibrarController {
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
+	}
+
+	@GetMapping("/lib-books/{libraryId}")
+	public List<Book> getLibraryBooks(@PathVariable int libraryId) {
+		return this.service.getAllLibraryBooks(libraryId);
+	}
+
+	@GetMapping("/{libraryId}")
+	public Library getLibrary(@PathVariable int libraryId) {
+		return this.service.getLibrary(libraryId);
 	}
 }
