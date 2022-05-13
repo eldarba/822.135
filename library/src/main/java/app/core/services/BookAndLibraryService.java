@@ -45,8 +45,9 @@ public class BookAndLibraryService {
 	}
 
 	public int addBookToLibrary(Book book, int libraryId) {
-		Library library = getLibrary(libraryId);
-		library.addBook(book);
+		book.setLibrary(getLibrary(libraryId));
+		book = this.bookRepo.save(book);
+		// library.addBook(book);
 		return book.getId();
 	}
 
