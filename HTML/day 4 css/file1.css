@@ -1,0 +1,51 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 150%;
+  width: 150%;
+}
+
+div {
+  height: 100px;
+  width: 100px;
+  background-color: aquamarine;
+  border: 1px solid black;
+  /* position: static; */
+}
+
+div.relative {
+  position: relative;
+  left: 50px;
+  bottom: 30px;
+}
+
+div.fixed {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+}
+
+fieldset {
+  width: 800px;
+  height: 400px;
+  padding: 0;
+  position: relative;
+  left: 300px;
+  bottom: 200px;
+  /* transform: rotate(20deg); */
+}
+
+div.absolute {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%) rotate(-20deg); */
+}
+
+div.sticky {
+  position: sticky;
+  left: 35px;
+  top: 20px;
+}
