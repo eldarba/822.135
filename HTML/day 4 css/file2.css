@@ -1,0 +1,51 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+section {
+  border: 1px solid black;
+  height: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 2fr 2fr 4fr 12fr 1fr;
+  grid-template-columns: 2fr 16fr 1fr;
+  text-align: center;
+}
+
+header#top {
+  border: inherit;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+header#bottom {
+  border: inherit;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+aside#login {
+  border: inherit;
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+}
+aside#menu {
+  border: inherit;
+  grid-column: 1 / 2;
+  grid-row: 3 / 6;
+}
+main {
+  border: inherit;
+  grid-column: 2 / 3;
+  grid-row: 3 / 5;
+}
+aside#tools {
+  border: inherit;
+  grid-column: 3 / 4;
+  grid-row: 1 / 6;
+}
+footer {
+  border: inherit;
+  grid-column: 2 / 3;
+  grid-row: 5 / 6;
+}
