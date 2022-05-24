@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import app.core.util.JwtUtil.Client.ClientType;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -29,11 +30,12 @@ public class JwtUtil {
 	private String alg = SignatureAlgorithm.HS256.getJcaName();
 	@Value("${jwt.util.secret.key}")
 	private String secret;
-	private Key key;
-	@Value("${jwt.util.chrono.unit.number}")
-	private int unitsNumber;
+	private Key key; // contains secret password and algorithm
+	// time attributes for token validity
 	@Value("${jwt.util.chrono.unit}")
-	private String chronoUnit;
+	private String chronoUnit; // time units
+	@Value("${jwt.util.chrono.unit.number}")
+	private int unitsNumber; // number of time units
 
 	@PostConstruct
 	public void init() {
@@ -69,7 +71,12 @@ public class JwtUtil {
 		return token;
 	}
 
-	public Client extractClient(String token) {
+	/**
+	 * @param token
+	 * @return the client object of this token
+	 * @throws JwtException in case the JWT is invalid from some reason
+	 */
+	public Client extractClient(String token) throws JwtException {
 		Claims claims = extractAllClaims(token);
 		String email = claims.getSubject();
 		ClientType clientType = ClientType.valueOf(claims.get("clientType", String.class));
@@ -78,7 +85,7 @@ public class JwtUtil {
 		return client;
 	}
 
-	private Claims extractAllClaims(String token) {
+	private Claims extractAllClaims(String token) throws JwtException {
 		JwtParser jwtParser = Jwts.parserBuilder().setSigningKey(key).build();
 		Jws<Claims> jws = jwtParser.parseClaimsJws(token);
 		return jws.getBody();
