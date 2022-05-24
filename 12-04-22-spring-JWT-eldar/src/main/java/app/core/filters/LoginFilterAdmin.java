@@ -11,18 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
 import app.core.util.JwtUtil;
 import app.core.util.JwtUtil.Client;
 import app.core.util.JwtUtil.Client.ClientType;
 
-public class LoginFilter implements Filter {
+public class LoginFilterAdmin implements Filter {
 	
 	// we need JwtUtil to check token validity
 	private JwtUtil jwtUtil;
 
-	public LoginFilter(JwtUtil jwtUtil) {
+	public LoginFilterAdmin(JwtUtil jwtUtil) {
 		super();
 		this.jwtUtil = jwtUtil;
 	}
