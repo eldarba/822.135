@@ -40,10 +40,12 @@ public class LoginFilterAdmin implements Filter {
 			Client client = this.jwtUtil.extractClient(token);
 			if(!(client.getType() == ClientType.ADMIN)) {
 				resp.sendError(HttpStatus.UNAUTHORIZED.value(),"you are not admin");
+				return;
 			}
 		} catch (Exception e) {
 			// throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
 			resp.sendError(HttpStatus.UNAUTHORIZED.value(), e.getMessage());
+			return;
 		}
 		
 		// pass the request on
