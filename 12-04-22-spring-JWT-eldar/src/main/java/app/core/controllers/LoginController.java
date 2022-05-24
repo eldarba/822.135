@@ -34,9 +34,9 @@ public class LoginController {
 		}
 	}
 
-	@PostMapping("/register")
-	public String register(@RequestBody Client client) {
-		return this.jwtUtil.generateToken(client);
-	}
+//	@PostMapping("/register")
+//	public String register(@RequestBody Client client) {
+//		return this.jwtUtil.generateToken(client);
+//	}
 
 }
