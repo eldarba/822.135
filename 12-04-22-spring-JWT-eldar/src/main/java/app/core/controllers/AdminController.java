@@ -24,9 +24,10 @@ public class AdminController {
 //			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "you are not logged in");
 //		}
 	}
-	
+
 	@PostMapping("/company/{companyName}")
 	public String createCompany(@RequestHeader String token, @PathVariable String companyName) {
+		System.out.println("adding comapny: " + companyName);
 		return " company " + companyName + " created";
 	}
 

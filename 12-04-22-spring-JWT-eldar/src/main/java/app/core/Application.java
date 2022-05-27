@@ -32,8 +32,14 @@ public class Application {
 	// use Docket if you want to specify packages / paths
 	@Bean
 	public Docket apoDocket() {
-		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.basePackage("app.core"))
-//				.paths(PathSelectors.ant("/api/admin/**"))
+		return new Docket(DocumentationType.SWAGGER_2)
+
+				.select()
+
+				.apis(RequestHandlerSelectors.basePackage("app.core"))
+
+				// .paths(PathSelectors.ant("/api/admin/**"))
+
 				.build();
 	}
 
