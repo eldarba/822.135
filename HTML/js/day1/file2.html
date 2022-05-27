@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        input,
+        div {
+            width: 150px;
+            text-align: right;
+            display: block;
+            margin: 10px 0 10px 0;
+        }
+
+        div {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body style="padding-left: 50px;">
+    <h1>Calculator</h1>
+    <input type="number">
+    <button onclick="add()">+</button>
+    <button onclick="sub()">-</button>
+    <button onclick="mul()">x</button>
+    <button onclick="div()">:</button>
+    <button onclick="x()">write</button>
+    <button onclick="popupMessage()">popup</button>
+    <button onclick="popupDialog()">popupDialog</button>
+    <input type="number">
+    <hr>
+    <div id="res">0</div>
+    <script>
+        function add() {
+            let a = document.getElementsByTagName('input')[0].value;
+            let b = document.getElementsByTagName('input')[1].value;
+            let sum = Number(a) + Number(b);
+            document.getElementById('res').innerHTML = sum;
+        }
+        function sub() {
+            let a = document.getElementsByTagName('input')[0].value;
+            let b = document.getElementsByTagName('input')[1].value;
+            let sum = Number(a) - Number(b);
+            document.getElementById('res').innerHTML = sum;
+        }
+        function mul() {
+            let a = document.getElementsByTagName('input')[0].value;
+            let b = document.getElementsByTagName('input')[1].value;
+            let sum = Number(a) * Number(b);
+            document.getElementById('res').innerHTML = sum;
+        }
+        function div() {
+            let a = document.getElementsByTagName('input')[0].value;
+            let b = document.getElementsByTagName('input')[1].value;
+            let sum = Number(a) / Number(b);
+            document.getElementById('res').innerHTML = sum;
+        }
+
+        function x() {
+            document.write("Hello document");
+        }
+
+        function popupMessage() {
+            alert("Hello");
+        }
+        
+        function popupDialog() {
+            let userName = prompt("enter name", "guest");
+            alert("hello " + userName);
+        }
+
+
+    </script>
+</body>
+
+</html>

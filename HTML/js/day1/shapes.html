@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Shapes</h1>
+    <select name="" id="select" onchange="f()">
+        <option value=""></option>
+        <option value="rectangle">Rectangle</option>
+        <option value="circle">Circle</option>
+    </select>
+
+    <div id="rectangle" style="display: none;">
+        <div>length</div>
+        <div>width</div>
+    </div>
+    <div id="circle" style="display: none;">
+        <div>radius</div>
+    </div>
+
+
+
+    <script>
+        function f() {
+            let index = document.getElementById("select").options.selectedIndex;
+            let opt = document.getElementById("select").options[index].value;
+            console.log(opt);
+            if(opt == "rectangle"){
+                document.getElementById("rectangle").style.display = "block";
+                document.getElementById("circle").style.display = "none";
+            }else{
+                document.getElementById("rectangle").style.display = "none";
+                document.getElementById("circle").style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

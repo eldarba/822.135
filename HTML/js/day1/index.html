@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body onload="f1()">
+    <h1>JS Demos</h1>
+    <input onchange="f2()" type="text" placeholder="onchange">
+    <input oninput="f3()" type="text" placeholder="oninput">
+    <button onclick="f4()">Reset</button>
+    <script src="file6.js"></script>
+    <script>
+        function f1(){
+            console.log("page loaded");
+        }
+       
+        function f2(){
+            console.log("change");
+        }
+        function f3(){
+            console.log("input");
+        }
+        function f4(){
+            document.getElementsByTagName('input')[0].value = null;
+            document.getElementsByTagName('input')[1].value = null;
+        }
+    </script>
+</body>
+</html>
