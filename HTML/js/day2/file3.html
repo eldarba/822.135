@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Arrays</h1>
+    <div id="my-div"></div>
+
+    <script>
+        let arr = [2, 4, 6];
+        console.log(arr);
+        console.log(arr[0]);
+
+        // put the array on the output
+        document.getElementById("my-div").innerHTML = arr;
+
+        // sort arrays (alphabetical order)
+        arr = ["ddd", "bbb", "zzz", "aaa"];
+        console.log(arr);
+        arr.sort();
+        console.log(arr);
+        
+        arr = [153, 25, 9, 11];
+        console.log(arr);
+        arr.sort();
+        console.log(arr);
+        
+        arr.reverse();
+        console.log(arr);
+    </script>
+</body>
+</html>

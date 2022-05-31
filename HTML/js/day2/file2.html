@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = 5;
+        let b = new Number(5);
+
+        console.log(typeof a); // number
+        console.log(typeof b); // object
+        console.log(a==b); // true
+        console.log(a===b); // false (not the same type)
+        
+        let name1 = "Alon";
+        let name2 = new String("Alon");
+        console.log(typeof name1); // number
+        console.log(typeof name2); // object
+
+        // convert string to number
+        let val1 = "25";
+        let val2 = "30";
+        console.log(val1 + val2);
+        console.log(Number(val1)  + Number(val2));
+
+        // parse methods
+        console.log( parseInt("25.3")); // 25
+        console.log( parseFloat("25.3")); // 25.3
+
+
+    </script>
+</body>
+</html>

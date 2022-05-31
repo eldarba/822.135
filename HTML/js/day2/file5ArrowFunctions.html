@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Arrow Function =></h1>
+    <script>
+        // arrow function full syntax
+        let f1 = (a, b) => {
+            let sum = a + b;
+            return sum;
+        };
+        // arrow function: if the entire method has 1 line
+        // which is a return no need for block and return
+        let f2 = (a, b) => a + b;
+        // arrow function: if there is 1 parameter only
+        // no need for ()
+        let f3 = val => val * 2;
+        
+        console.log(f1(2, 3));
+        console.log(f2(2, 3));
+        console.log(f3(100));
+
+    </script>
+</body>
+
+</html>

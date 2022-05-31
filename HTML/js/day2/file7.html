@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = ["red", "green", "blue", 1, 2, 3];
+        console.log(arr.join());
+        
+        // get a slice from start index (inclusive)  and end index (exclusive)
+        let arr2 = arr.slice(2, 4);
+        console.log(arr2.join());
+
+        arr = [0,1,2,3,4,5,6,7,8,9];
+        console.log(arr.join());
+        slice = arr.slice(5);
+        console.log(slice.join());
+        
+        // shift and unshift
+        // remove first element
+        console.log("================");
+        console.log(arr.join());
+        let e = arr.shift();
+        console.log(e);
+        console.log(arr.join());
+        // add first element
+        arr.unshift(100, 200);
+        console.log(arr.join());
+
+
+
+        
+
+        </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        arr = [40, 7, 150, 3333, 2, 88, 6];
+        console.log(arr.join(", "));
+
+        arr.sort(); // alphabetical order
+        console.log(arr.join(", "));
+        
+        arr.sort((a, b) => a - b); // numeral order ascend
+        console.log(arr.join(", "));
+        arr.sort((a, b) => b - a); // numeral order descend
+        console.log(arr.join(", "));
+
+        // find max
+        let max = Math.max.apply(null, arr);
+        console.log("max: " + max);
+        
+        // find min
+        let min = Math.min.apply(null, arr);
+        console.log("min: " + min);
+
+        // min / max are methods in Math class
+        Math.min(2,4,6,3,1);
+        Math.max(2,4,6,3,1);
+        
+
+
+
+
+
+    </script>
+</body>
+
+</html>

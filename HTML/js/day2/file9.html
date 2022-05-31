@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Client Server</h1>
+    <button onclick="callServer()">call</button>
+
+    <script>
+        function callServer() {
+
+            // create an object that can make http requests
+            let xhttp = new XMLHttpRequest(); // ready state = 0
+            console.dir(xhttp);
+
+            // define what to do on ready state change
+            xhttp.onreadystatechange = function(){
+                console.log("ready state: " + this.readyState);
+            }
+            
+            // open a request
+            xhttp.open("GET", "http://localhost:8080/api");
+            console.log(xhttp.readyState);  // ready state = 1
+
+            // send request to server
+            xhttp.send();
+            
+
+        }
+    </script>
+</body>
+</html>

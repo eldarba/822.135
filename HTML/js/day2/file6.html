@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = ["red", "green", "blue"];
+        // add element to the end
+        arr.push("black");
+        let theNewLength = arr.push("yellow");
+        console.log(arr.toString());
+        
+        // add element to a given index (last)
+        arr[arr.length] = "white";
+        console.log(arr.toString());
+        
+        // add element to a given index (any)
+        arr[10] = "white";
+        console.log(arr.toString());
+        
+        // convert an array to string
+        console.log(arr.join());
+        console.log(arr.join("|"));
+        console.log(arr.join("-"));
+        console.log(arr.join(", "));
+        
+        // get the last element and remove it
+        arr = ["red", "green", "blue"];
+        let e = arr.pop();
+        console.log("last element is: " + e);
+        console.log(arr.join(", "));
+        
+        // the splice function
+        arr = ["red", "green", "blue"];
+        arr.splice(1, 0, "aaa", "bbb");
+        console.log(arr.join(", "));
+        
+        arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        console.log(arr.join(", "));
+        // remove the 3rd element
+        arr.splice(2, 1);
+        console.log(arr.join(", "));
+        
+        arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        console.log(arr.join(", "));
+        arr.splice(5, 3, 0, 0, 0);
+        console.log(arr.join(", "));
+
+        // concatenating arrays
+        let arr1 = [1, 2, 3];
+        let arr2 = [4, 5, 6];
+        let arr3 = arr1.concat(arr2);
+        console.log(arr3.join());
+        
+        let arr4 = arr1.concat(arr2, arr3);
+        console.log(arr4.join());
+
+        
+
+        </script>
+</body>
+</html>
