@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        input {
+            display: none;
+            margin: 10px 0 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="sel">choose an option:</label>
+    <select name=""
+            id="sel"
+            onchange="onSelect()">
+        <option value="">-- choose one --</option>
+        <option value="rectangle">rectangle</option>
+        <option value="circle">circle</option>
+    </select>
+
+    <hr>
+    <div id="rectangle">
+        <input id="length"
+               type="number"
+               placeholder="enter length"
+               oninput="calculteRectangleArea()">
+               <input id="width"
+               type="number"
+               placeholder="enter width"
+               oninput="calculteRectangleArea()">
+               
+            </div>
+            <div id="circle">
+                <input id="radius"
+                type="number"
+                placeholder="enter radius"
+                oninput="calculteCircleArea()">
+    </div>
+    area:
+    <div id="area"></div>
+
+    <script>
+        function onSelect() {
+            document.getElementById("area").innerHTML = "";
+            document.getElementById("length").style.display = "none";
+            document.getElementById("width").style.display = "none";
+            document.getElementById("radius").style.display = "none";
+            document.getElementById("length").value = "";
+            document.getElementById("width").value = "";
+            document.getElementById("radius").value = "";
+            let selction = document.getElementById("sel").value;
+            console.log(selction);
+            if (selction == 'rectangle') {
+                document.getElementById("length").style.display = "block";
+                document.getElementById("width").style.display = "block";
+            } else if (selction == 'circle') {
+                document.getElementById("radius").style.display = "block";
+            }
+        }
+
+        function calculteRectangleArea() {
+            let a = document.getElementById("length").value;
+            let b = document.getElementById("width").value;
+            let area = a * b;
+            document.getElementById("area").innerHTML = area;
+        }
+        function calculteCircleArea() {
+            let radius = document.getElementById("radius").value;
+            let area = Math.PI * (radius ** 2);
+            document.getElementById("area").innerHTML = area;
+        }
+    </script>
+</body>
+
+</html>
