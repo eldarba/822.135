@@ -1,0 +1,10 @@
+Homework
+write an HTML file that let the client do:
+- create
+- read by id / read all
+- update
+- delete
+for items.
+add necessary methods in the spring rest controller
+
+write the necessary js + AJAX code (icluding exceptions handling)

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>AJAX </h1>
+    <h3>Asynchronius Resource Sharing</h3>
+    <input type="text" placeholder="enter data">
+    <br>
+    <br>
+    <div id="resp">
+        <img src="images/loading.gif"
+             alt="loading..."
+             width="100">
+    </div>
+
+    <script>
+        // 1. an object for sending http requests
+        let xhttp = new XMLHttpRequest(); // 0
+        // 2. define the request url
+        let url = "http://localhost:8080/api/my-controller/greet";
+        // 3. callback method for handling the response on arrival
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                console.log("response ready: " + this.readyState);
+                let theResponse = this.response;
+                if(this.status==200){
+                    // put the response value in the document
+                    document.getElementById("resp").style.color="black";
+                    document.getElementById("resp").innerText = theResponse;
+                }else{
+                    let errorObj = JSON.parse(theResponse);
+                    console.dir(errorObj);
+                    let errMsg = "error: " + errorObj.error + ": " + errorObj.message;
+                    document.getElementById("resp").style.color="red";
+                    document.getElementById("resp").innerText = errMsg;
+                } 
+            }else if(this.readyState == 1){
+                console.log("open() has been called: " + this.readyState);
+            }else if(this.readyState == 2){
+                console.log("headers and status are available: " + this.readyState);
+            }else if(this.readyState == 3){
+                console.log("response loading: " + this.readyState);
+            }
+        } 
+
+        // 4. send the request
+        xhttp.open("GET", url); // 1
+            xhttp.send();
+        
+        
+        // there is a third paramater called aynch - if true (default) the request is asynchronous
+        // synchronius (page wiil freez until response arrives)
+        // setTimeout(() => {
+            //     xhttp.open("GET", url, false); 
+            //     xhttp.send();
+        // }, 100);
+
+    </script>
+</body>
+
+</html>
