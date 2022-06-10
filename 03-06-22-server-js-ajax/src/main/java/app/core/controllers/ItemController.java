@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,6 +42,23 @@ public class ItemController {
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "for id " + itemId);
 		}
+	}
+	
+	@GetMapping
+	public List<Item> getAllItems(){
+		return this.items;
+	}
+	
+	@PutMapping
+	public void updateItem(@RequestBody Item item) {
+		Item itemFromDb = this.getItem(item.getId());
+		itemFromDb.setName(item.getName());
+		itemFromDb.setPrice(item.getPrice());
+	}
+	
+	@DeleteMapping
+	public void deleteItem(int itemId) {
+		this.items.remove(this.getItem(itemId));
 	}
 
 }
