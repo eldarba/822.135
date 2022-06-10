@@ -40,7 +40,7 @@ public class ItemController {
 		if (index != -1) {
 			return items.get(index);
 		} else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "for id " + itemId);
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "item with id: " + itemId + " not found");
 		}
 	}
 	
@@ -56,9 +56,14 @@ public class ItemController {
 		itemFromDb.setPrice(item.getPrice());
 	}
 	
-	@DeleteMapping
-	public void deleteItem(int itemId) {
+	@DeleteMapping("/{itemId}")
+	public void deleteItem(@PathVariable int itemId) {
 		this.items.remove(this.getItem(itemId));
+	}
+	
+	@DeleteMapping
+	public void deleteAll() {
+		this.items.clear();
 	}
 
 }
