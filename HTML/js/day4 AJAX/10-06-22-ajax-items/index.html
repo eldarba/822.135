@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>our store</title>
+    <link rel="stylesheet" href="page.css" />
+  </head>
+  <body>
+    <h1>Store of Items</h1>
+
+    <fieldset>
+      <legend>item details</legend>
+      <label for="itemId">id</label>
+      <input id="inId" type="number" />
+      <br />
+      <label for="itemName">name</label>
+      <input id="inName" type="text" />
+      <br />
+      <label for="itemPrice">price</label>
+      <input id="inPrice" type="number" />
+
+      <div class="centered">
+        <button onclick="save()">save</button>
+        <button onclick="getOne()">get one</button>
+        <button onclick="getAll()">get all</button>
+        <button onclick="update()">update</button>
+        <button onclick="deleteItem()">delete</button>
+        <button onclick="deleteAll()">delete all</button>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>response</legend>
+      <div id="resp"></div>
+    </fieldset>
+
+    <script>
+      function deleteAll() {
+        if (!confirm("are you sure? this will delete all items")) {
+          return;
+        }
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            if (this.status == 200) {
+              // OK
+              document.getElementById("resp").innerHTML = "all items deleted";
+            } else {
+              // error - parse the error JSON to JS object
+              let e = JSON.parse(this.response);
+              // console.dir(error);
+              alert("Error: " + e.error + ": " + e.message);
+            }
+          }
+        };
+        let url = "http://localhost:8080/api/items";
+        xhttp.open("DELETE", url);
+        xhttp.send();
+      }
+
+      function deleteItem() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            if (this.status == 200) {
+              // OK
+              document.getElementById("resp").innerHTML = "item deleted";
+            } else {
+              // error - parse the error JSON to JS object
+              let e = JSON.parse(this.response);
+              // console.dir(error);
+              alert("Error: " + e.error + ": " + e.message);
+            }
+          }
+        };
+        let itemId = document.getElementById("inId").value;
+        let url = "http://localhost:8080/api/items/" + itemId;
+        xhttp.open("DELETE", url);
+        xhttp.send();
+      }
+
+      function update() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            if (this.status == 200) {
+              // OK
+              document.getElementById("resp").innerHTML = "update success";
+            } else {
+              // error
+              let e = JSON.parse(this.response);
+              alert("Error: " + e.error + ": " + e.message);
+            }
+          }
+        };
+        let url = "http://localhost:8080/api/items";
+        xhttp.open("PUT", url);
+        // create an item and put in the request body
+        let id = document.getElementById("inId").value;
+        let name = document.getElementById("inName").value;
+        let price = document.getElementById("inPrice").value;
+        let item = new Item(id, name, price);
+        // convert js onject to JSON
+        let itemAsJson = JSON.stringify(item);
+        // add header to notify server that the request body is in JSON format
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        // send the request with the JSON in the request body
+        xhttp.send(itemAsJson);
+      }
+
+      function save() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            if (this.status == 200) {
+              // OK
+              document.getElementById("resp").innerHTML = this.response;
+            } else {
+              // error
+              console.log("ERROR" + this.response);
+              alert("Error: " + this.response);
+            }
+          }
+        };
+        let url = "http://localhost:8080/api/items";
+        xhttp.open("POST", url);
+        // create an item and put in the request body
+        let id = document.getElementById("inId").value;
+        let name = document.getElementById("inName").value;
+        let price = document.getElementById("inPrice").value;
+        let item = new Item(id, name, price);
+        // convert js onject to JSON
+        let itemAsJson = JSON.stringify(item);
+        // add header to notify server that the request body is in JSON format
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        // send the request with the JSON in the request body
+        xhttp.send(itemAsJson);
+      }
+
+      function getOne() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            if (this.status == 200) {
+              // OK
+              let item = JSON.parse(this.response);
+              let template = "id: " + item.id + "</br>";
+              template += "name: " + item.name + "</br>";
+              template += "price: " + item.price + "</br>";
+              console.log(template);
+              document.getElementById("resp").innerHTML = template;
+            } else {
+              // error - parse the error JSON to JS object
+              let e = JSON.parse(this.response);
+              // console.dir(error);
+              alert("Error: " + e.error + ": " + e.message);
+            }
+          }
+        };
+        let itemId = document.getElementById("inId").value;
+        let url = "http://localhost:8080/api/items/" + itemId;
+        xhttp.open("GET", url);
+        xhttp.send();
+      }
+
+      function getAll() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            if (this.status == 200) {
+              // OK
+              let items = JSON.parse(this.response);
+              let template = "<table border='1'>";
+              template += "<tr><th>id</th><th>name</th><th>price</th></tr>";
+              items.forEach((item) => {
+                template += "<tr>";
+                template += "<td>" + item.id + "</td>";
+                template += "<td>" + item.name + "</td>";
+                template += "<td>" + item.price + "</td>";
+                template += "</tr>";
+              });
+              template += "</table>";
+              document.getElementById("resp").innerHTML = template;
+            } else {
+              // error
+              console.log("ERROR" + this.response);
+              alert("Error: " + this.response);
+            }
+          }
+        };
+        let url = "http://localhost:8080/api/items";
+        xhttp.open("GET", url);
+        xhttp.send();
+      }
+
+      // Item class as a model for Item entity in the server
+      class Item {
+        constructor(id, name, price) {
+          this.id = id;
+          this.name = name;
+          this.price = price;
+        }
+      }
+    </script>
+  </body>
+</html>
