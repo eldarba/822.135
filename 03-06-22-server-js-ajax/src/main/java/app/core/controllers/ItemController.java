@@ -18,8 +18,8 @@ import org.springframework.web.server.ResponseStatusException;
 import app.core.beans.Item;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/api/items")
+@CrossOrigin(origins = "http://127.0.0.1:5500") // add CORS headers to the response
 public class ItemController {
 
 	private int id;
