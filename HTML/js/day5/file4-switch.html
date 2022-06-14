@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="in"
+           type="number"
+           placeholder="enter grade">
+    <button onclick="f()">show grade</button>
+    <br>
+    <div id="out"></div>
+    <script>
+        function f() {
+            let grade = Number(document.getElementById("in").value);
+            switch (grade) {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    console.log("fail");
+                    document.getElementById("out").innerHTML = "fail";
+                    break;
+                case 6:
+                case 7:
+                    console.log("pass");
+                    document.getElementById("out").innerHTML = "pass";
+                    break;
+                case 8:
+                case 9:
+                case 10:
+                    console.log("good");
+                    document.getElementById("out").innerHTML = "good";
+                    break;
+
+                default:
+                    console.log(grade + " is invalid grade");
+                    document.getElementById("out").innerHTML = grade + " is invalid grade";
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let b = 101;
+        try {
+            console.log(a);
+        } catch (e) {
+            console.dir(e);
+            console.log("errortype is " + e.name);
+            console.log("error message is " + e.message);
+        }
+
+        console.log("============");
+
+
+
+        class Person {
+            id;
+            name;
+            age;
+
+            setAge(age) {
+                if (age >= 0 && age <= 120) {
+                    this.age = age;
+                } else {
+                    // throw new Error("age " + age + " is invalid")
+                    // throw "this is an error";
+                    throw 111;
+                }
+            }
+        }
+
+        let p = new Person();
+        p.id = 0;
+        p.name = null;
+        p.age = 0;
+        try {
+            p.setAge(250);
+        } catch (e) {
+            console.log("Error: " + e);
+        }
+
+        console.log(p);
+    </script>
+</body>
+
+</html>
