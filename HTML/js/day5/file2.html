@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        {
+            let arr = [2, 5, 12, 98, -2, 17];
+            let sum = arr.reduce((pv, cv) => pv + cv);
+            let avg = arr.reduce((pv, cv, ind, arr) => {
+                if (ind < arr.length - 1) {
+                    return pv + cv;
+                } else {
+                    return (pv + cv) / arr.length;
+                }
+            });
+
+            console.log(arr.join(", "));
+            console.log("sum = " + sum);
+            console.log("average = " + avg);
+
+
+            // reduce callback function gets up to 4 parameters:
+            // 1. previous value
+            // 2. current value
+            // 3. current index
+            // 4. the array
+            console.log("=====================");
+        }
+        { // every
+            let arr = [2, 0, 10, 4, 70, 100];
+            // are all numbers even
+            if (arr.every(e => e % 2 == 0)) {
+                console.log("all elements even");
+            } else {
+                console.log("some elements are odd");
+            }
+            console.log("=====================");
+        }
+        { // every
+            let arr = ["aaa", "bbbbbb", "bbmmm", "rr"];
+            // are all numbers even
+            if (arr.every(e => e.length >= 3)) {
+                console.log("all names are at least 3 characters");
+            } else {
+                console.log("some names are shorter than 3 characters");
+            }
+            
+            console.log("=====================");
+        }
+       
+        { // every
+            let arr = ["aac", "bbbbbb", "bbmmm", "rr", "aaa"];
+            // are all numbers even
+            if (arr.every((e, i) => {
+                if(e.length<3){
+                    console.log("element " + i + " is short [" + e + "]");
+                }
+                return e.length >= 3;
+            })) {
+                console.log("all names are at least 3 characters");
+            } else {
+                console.log("some names are shorter than 3 characters");
+            }
+            
+            console.log("=====================");
+        }
+    </script>
+</body>
+
+</html>
