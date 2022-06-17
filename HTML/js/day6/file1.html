@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // this our own custom error
+        class MyError extends Error {
+
+            constructor(msg) {
+                super(msg);
+                this.name = "MyError";
+            }
+
+        }
+
+        let e = new MyError("this is a test error message");
+        // throw e;
+        console.dir(e);
+
+        console.log("=================");
+        // this is a JS error
+        try {
+            console.log(a);
+        } catch (e) {
+            console.dir(e);
+        }
+
+        console.log("================");
+        // in js any type can be thrown as an error
+        if (Math.random() < 0.5) {
+            console.log("all is good");
+        } else {
+            // throw "---Error Message";
+            throw 118;
+        }
+
+        console.log("================");
+        class Person {
+            constructor(id, name, age) {
+                this.id = id;
+                this.name = name;
+                this.age = age;
+            }
+            setAge(age) {
+                if (age >= 0 && age <= 120) {
+                    this.age = age;
+                } else {
+                    throw age + " is invalid age value";
+                }
+            }
+        }
+
+        let p = new Person(101, "aaa", 11);
+        p.setAge(150);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Location</h1>
+    <input id="x" type="number" placeholder="x">
+    <br>
+    <input id="y" type="number" placeholder="y">
+    <br>
+    <button onclick="go()">Go</button>
+    <div id="output"></div>
+
+    <script>
+        
+        class Location{
+            
+            constructor(x, y){
+                if(x >= 0 && x <= 100 && y >= 0 && y <= 100){
+                    this.x = x;
+                    this.y = y;
+                }else{
+                    throw new LocationError("x and y value out of range");
+                }
+            }
+
+            toString(){
+                return "(" + this.x + ", " + this.y + ")";
+            }
+        }
+        
+        class LocationError extends Error{
+            constructor(msg){
+                super(msg);
+                this.name = "LcationError";
+            }
+        }
+
+        function go() {
+            document.getElementById("output").style.color = "black";
+            try {
+                let x = Number(document.getElementById("x").value);
+                let y = Number(document.getElementById("y").value);
+                let location = new Location(x, y);
+                document.getElementById("output").innerHTML = "moved to " + location;
+            } catch (e) {
+                document.getElementById("output").style.color = "red";
+                document.getElementById("output").innerHTML = "Error: " + e.message;
+            }
+        }
+    </script>
+</body>
+</html>

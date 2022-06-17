@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ... operator
+
+        // spread an array
+        let arr1 = [2, 4, 6];
+        let arr2 = [100, 200, ...arr1, 300];
+        console.log(arr1);
+        console.log(arr2);
+        
+        // spread an object
+        let person = {id: 101, name: "dan", age: 25};
+        let employee = {...person, salary:7000};
+        console.log(person);
+        console.log(employee);
+        
+        // use spread for cloaning
+        let p1 = {...person};
+        let p2 = {...person};
+        p1.name = "aaa";
+        console.log(person);
+        console.log(p1);
+        console.log(p2);
+
+
+    </script>
+</body>
+</html>
