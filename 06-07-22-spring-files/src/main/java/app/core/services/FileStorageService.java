@@ -1,5 +1,6 @@
 package app.core.services;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -68,6 +69,39 @@ public class FileStorageService {
 			}
 		} catch (MalformedURLException e) {
 			throw new RuntimeException("file not found: " + fileName, e);
+		}
+
+	}
+
+	public boolean deleteFile(String fileName) {
+		Path filePath = this.fileStoragePath.resolve(fileName).normalize();
+		File file = filePath.toFile();
+		if (file.exists()) {
+			return file.delete();
+		} else {
+			throw new RuntimeException("deleteFile failed - not found: " + fileName);
+		}
+	}
+
+	public boolean renameFile(String oldFileName, String newFileName) {
+		Path oldFilePath = this.fileStoragePath.resolve(oldFileName).normalize();
+		File oldFile = oldFilePath.toFile();
+		if (oldFile.exists()) {
+			Path newFilePath = this.fileStoragePath.resolve(newFileName).normalize();
+			return oldFile.renameTo(newFilePath.toFile());
+		} else {
+			throw new RuntimeException("renameFile failed - not found: " + oldFileName);
+		}
+	}
+
+	public String[] listFileNames() {
+		return fileStoragePath.toFile().list();
+	}
+
+	public void deleteAllFiles() {
+		File rootDir = this.fileStoragePath.toFile();
+		for (File file : rootDir.listFiles()) {
+			file.delete();
 		}
 
 	}

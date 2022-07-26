@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Files</title>
+</head>
+
+<body>
+    <h1>Files</h1>
+    <fieldset>
+        <legend>upload file using form</legend>
+        <form action="http://localhost:8080/files/uploadFile"
+              method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit">
+            </form>
+    </fieldset>
+
+    <!-- display all file names using form -->
+    <fieldset>
+        <legend>all file names</legend>
+        <form action="http://localhost:8080/files/" method="get">
+            <button>display file names</button>
+        </form>
+    </fieldset>
+   
+    <!-- download file by name using form -->
+    <fieldset>
+        <legend>download file</legend>
+        <form action="http://localhost:8080/files/one" method="get">
+            <input type="text" name="fileName" placeholder="enter file name">
+            <button>download file</button>
+        </form>
+    </fieldset>
+</body>
+
+<hr>
+<button onclick="updateFileList()">update file list</button>
+<select id="files" onchange="setImage()"></select>
+<img id="image" src="" alt="image..." style="height: 200px;">
+
+<script>
+    
+    function setImage() {
+    let selectElement = document.getElementById("files");
+    let image = document.getElementById("image");
+    image.src = "http://localhost:8080/pics/" + selectElement.value;
+   
+}
+
+    function updateFileList() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+            if(this.status==200){
+                let arr = JSON.parse(this.response);
+                console.log(arr);
+                let selectElement = document.getElementById("files");
+                selectElement.innerHTML = null; // empty the select
+                let opt = document.createElement("option");
+                opt.innerHTML = "-- choose a file --";
+                selectElement.appendChild(opt);
+                arr.forEach((fileName) => {
+                    opt = document.createElement("option");
+                    opt.value = fileName;
+                    opt.innerHTML = fileName;
+                    selectElement.appendChild(opt);
+                });
+            }else{
+                console.log("Error");
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/files" )
+        xhttp.send();
+    }
+</script>
+
+
+</html>
