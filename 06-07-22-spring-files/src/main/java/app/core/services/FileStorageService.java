@@ -48,6 +48,7 @@ public class FileStorageService {
 		try {
 			Path tagetLocation = this.fileStoragePath.resolve(fileName);
 			Files.copy(file.getInputStream(), tagetLocation, StandardCopyOption.REPLACE_EXISTING);
+//			Files.copy(file.getInputStream(), tagetLocation); // throw exception if file exists
 			return fileName;
 		} catch (IOException e) {
 			throw new RuntimeException("storeFile failed: " + fileName, e);

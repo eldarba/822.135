@@ -52,6 +52,17 @@ public class FileController {
 		}
 	}
 
+	@PostMapping("/uploadFiles")
+	public void uploadFiles(@RequestParam MultipartFile[] files) {
+		try {
+			for (MultipartFile multipartFile : files) {
+				this.fileStorageService.storeFile(multipartFile);
+			}
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, generateErrorMsg(e));
+		}
+	}
+
 	@GetMapping("dowloadFile/{fileName}")
 	public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
 		Resource resource = this.fileStorageService.loadFileAsResource(fileName);
@@ -75,7 +86,10 @@ public class FileController {
 
 				.contentType(MediaType.parseMediaType(contentType))
 
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+				// .header(HttpHeaders.CONTENT_DISPOSITION, "attachement; filename=\"" +
+				// resource.getFilename() + "\"")
+
+				.header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + resource.getFilename() + "\"")
 
 				.body(resource);
 	}
@@ -103,9 +117,16 @@ public class FileController {
 
 				.contentType(MediaType.parseMediaType(contentType))
 
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+//				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+				.header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + resource.getFilename() + "\"")
 
 				.body(resource);
+	}
+
+	@GetMapping("/one2") // it is wrong to just return a resource
+	public Resource downloadFileParam2(@RequestParam String fileName, HttpServletRequest request) {
+		Resource resource = this.fileStorageService.loadFileAsResource(fileName);
+		return resource;
 	}
 
 	@DeleteMapping("/{fileName}")
