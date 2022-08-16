@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Welcome to Auth</h1>
+    <fieldset>
+      <legend>login</legend>
+      <input id="email" type="email" placeholder="email" />
+      <br />
+      <input id="password" type="text" placeholder="password" />
+      <br />
+      <button onclick="login()">login</button>
+    </fieldset>
+    <fieldset>
+      <legend>logout</legend>
+      <button onclick="logout()">logout</button>
+    </fieldset>
+    <fieldset>
+      <legend>actions</legend>
+      <button onclick="greet()">greet</button>
+    </fieldset>
+    <fieldset>
+      <legend>response</legend>
+      <div id="content"></div>
+    </fieldset>
+    <fieldset>
+      <legend>error</legend>
+      <div id="error"></div>
+    </fieldset>
+
+    <script>
+      function logout() {
+        localStorage.removeItem("token");
+      }
+      function login() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+          if (this.status == 200) {
+            localStorage.setItem("token", this.response);
+          } else {
+            console.log(this.status);
+            console.log(this.response);
+            alert("login faild");
+          }
+        };
+        xhttp.open("POST", "http://localhost:8080/auth/login");
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const credentials = new CredentialsModel(email, password);
+        console.log(credentials);
+        xhttp.send(JSON.stringify(credentials));
+      }
+      
+      function greet() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+          if (this.status === 200) {
+            document.getElementById("error").innerHTML = "";
+            document.getElementById("content").innerHTML = this.response;
+          } else {
+            document.getElementById("content").innerHTML = "";
+            document.getElementById("error").innerHTML = this.response;
+          }
+        };
+        xhttp.open("GET", "http://localhost:8080/api/app");
+        xhttp.setRequestHeader(
+          "Authorization",
+          "Bearer " + localStorage.getItem("token")
+        );
+        xhttp.send();
+      }
+
+      class CredentialsModel {
+        constructor(email, password) {
+          this.email = email;
+          this.password = password;
+        }
+      }
+    </script>
+  </body>
+</html>
