@@ -13,30 +13,29 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class ControllerA {
-	
+
 	@Autowired
 	private RestTemplate template;
-	
+
 	// @Autowired
 	// private DiscoveryClient discoveryClient;
-	
-	@Autowired
-	private LoadBalancerClient lbClient;
-	
+	// @Autowired
+	// private LoadBalancerClient lbClient;
+
 	@GetMapping("/service/a")
 	public String handleA() {
-		String serviceId = "service-b";
-		URI baseUri = getInstaceBaseUriLB(serviceId);
-		String url = baseUri + "/service/b";
+//		String serviceId = "service-b";
+//		URI baseUri = getInstaceBaseUriLB(serviceId);
+		String url = "http://service-b/service/b";
 		String res = template.getForObject(url, String.class);
 		return "Service A calling B - " + res;
-	} 
-	
-	private URI getInstaceBaseUriLB(String serviceId) {
-		ServiceInstance serviceInstance = lbClient.choose(serviceId);
-		return serviceInstance.getUri();
 	}
-	
+
+//	private URI getInstaceBaseUriLB(String serviceId) {
+//		ServiceInstance serviceInstance = lbClient.choose(serviceId);
+//		return serviceInstance.getUri();
+//	}
+
 	// NO LB
 //	private URI getInstaceBaseUri(String serviceId) {
 //		List<ServiceInstance> instances = discoveryClient.getInstances(serviceId);
