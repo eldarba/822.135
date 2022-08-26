@@ -24,7 +24,7 @@ public class ControllerA {
 	// @Autowired
 	// private LoadBalancerClient lbClient;
 
-	@HystrixCommand(fallbackMethod = "")
+	@HystrixCommand(fallbackMethod = "handleAFallback")
 	@GetMapping("/service/a")
 	public String handleA() {
 //		String serviceId = "service-b";
@@ -32,6 +32,10 @@ public class ControllerA {
 		String url = "http://service-b/service/b";
 		String res = template.getForObject(url, String.class);
 		return "Service A calling B - " + res;
+	}
+	
+	public String handleAFallback(Throwable t) {
+		return "service B not available: " + t;
 	}
 
 //	private URI getInstaceBaseUriLB(String serviceId) {
